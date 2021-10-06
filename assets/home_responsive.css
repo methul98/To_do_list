@@ -1,0 +1,46 @@
+@media screen and (max-width:1300px) {
+    /* make the widthe litte bigger while reduce the with */
+    #to_do_list{
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+
+@media screen and (max-width:850px) {
+    /* make the width of to do list litte bigger while reduce the with */
+    #to_do_list{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+@media screen and (max-width:650px) {
+      /* make the width of to do list litte bigger while reduce the with */
+    #to_do_list{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    /* bring the category and date input form in to separate row */
+    #date_and_categ
+   {
+     grid-template-columns: 1fr;
+   }
+   /* remove the vertical border before date inputform and add top border */
+   #date_and_categ div:nth-child(2)
+   {
+      border-left: 0;
+      border-top: 2px solid gray;
+   }
+   /* reduce the input and select margin */
+   #input_form input,select{
+    margin-left:2% ;
+   }
+   /* reduce the margine left of h3 tag on date and category input form */
+   #date_and_categ h3{
+    margin-left: 2%;
+   }
+   /* reduce the font size of the description while reduce the screen size */
+   #descp_and_date div:nth-child(1)
+  {
+      font-size: 1em;
+  }
+}

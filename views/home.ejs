@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="/home_responsive.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <!-- TO_DO_LIST -->
+    <div id="to_do_list">
+        <div id="title"> 
+             <h1>TO DO LIST</h1>
+        </div>
+        <!-- This section for input the schedule from user -->
+        <div id="input_form">
+            <form action="/to_do_list" method="POST">
+                <h3>DESCRIPTION</h3>
+                <input type="text" name="description" placeholder="what do you need to do?" required  id="desc">
+                <div id="date_and_categ">
+                    <div>
+                        <h3>CATEGORY</h3>
+                        <!-- use select tag for choose input from diffrent option -->
+                        <select name="category" placeholder="Choose a category" required>
+                            <option value="" disabled selected>choose a category</option>
+                            <option value="work">work</option>
+                            <option value="college">college</option>
+                            <option value="personal" >personal</option>
+                            <option value="cleaning">cleaning</option>
+                            <option value="other">other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h3>DUE DATE</h3>
+                        <input type="date" name="date" placeholder="dd/mm/yyyy" required>
+                    </div>
+                </div>
+                <!-- add the schedule buton -->
+                <div id="add_btn"><button type="submit"><i class="fas fa-plus"></i> &nbsp;&nbsp;ADD TASK</button></div>
+            </form>
+        </div>
+        <div >
+            <!-- This deleting multiple schedule at a tiem-->
+              <form action="/delete_list" method="POST">
+                  <ul >
+                    <% for(i of list) {%>
+                        <li id="output_form">
+                            <div><input type="checkbox"  name="check" value="<%= i._id%>"></div>
+                            <div id="descp_and_date">
+                                <div style="font-weight: 600;"><%= i.description %></div>
+                                <div style="font-size: small;font-weight: 600;">
+                                    <i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;<%= i.date %>
+                                </div>
+                            </div>
+                            <!-- loop for selecting diffrent backround color for each category -->
+                            <% if(i.category=="personal" ){ %>
+                                <div id="categ" style="background-color:chartreuse;">
+                                    <%= i.category %>
+                                </div>
+                              <% } else if (i.category=="college"){ %>  
+                                <div id="categ" style="background-color:rgb(220, 20, 120);">
+                                    <%= i.category %>
+                                </div>
+                             <% } else if(i.category=="cleaning"){ %> 
+                                <div id="categ" style="background-color:blue;">
+                                    <%= i.category %>
+                                </div>
+                            <% } else if(i.category=="work"){ %> 
+                                    <div id="categ" style="background-color:blueviolet;">
+                                        <%= i.category %>
+                                    </div>
+                            <% } else{%>
+                                <div id="categ" style="background-color:orangered;">
+                                    <%= i.category %>
+                                </div>
+                            <% } %>    
+
+                        </li>                           
+                   <% }%>
+                  </ul>
+                  <!-- if the the schedule list is empty or there is no schedule then the delete option will not appear -->
+                  <%if(list.length!=0){%>
+                    <div id="dlt_btn"><button type="submit"><i class="fas fa-trash-alt"></i> &nbsp;&nbsp;DELETE TASK</button></div>
+                  <%}%>
+                 
+              </form>
+        </div>   
+    </div>
+</body>
+</html>
